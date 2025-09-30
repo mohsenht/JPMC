@@ -8,4 +8,7 @@ pip install -r requirements.txt
 ```
 # Classification
 
-run main.py
+Add census-bureau.data and census-bureau.columns files and then run main.py
+
+
+
