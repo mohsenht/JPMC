@@ -1,6 +1,6 @@
 # ML Classification & Clustering project
 
-## Install dependencies
+## Install dependenciessdf
 
 ```bash
 python -m pip install --upgrade pip
