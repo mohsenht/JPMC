@@ -1,8 +1,11 @@
 # ML Classification & Clustering project
 
-## Install dependenciessdf
+## Install dependencies
 
 ```bash
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
+# Classification
+
+run main.py
