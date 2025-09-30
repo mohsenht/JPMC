@@ -10,5 +10,6 @@ pip install -r requirements.txt
 
 Add census-bureau.data and census-bureau.columns files and then run main.py
 
+# Clustering
 
-
+Add census-bureau.data and census-bureau.columns files and then run clustering.py
