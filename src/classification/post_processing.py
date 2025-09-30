@@ -1,6 +1,8 @@
 import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
 
+from src.utility import load_data
+
 
 def pick_best_threshold(target_pp, clf, X_test, y_test, w_test):
     y_proba = clf.predict_proba(X_test)[:, 1]
@@ -27,9 +29,9 @@ def pick_best_threshold(target_pp, clf, X_test, y_test, w_test):
     return t_best
 
 
-def evaluate(clf, X_test, y_test, w_test):
+def evaluate(clf, X_test, y_test, w_test, threshold):
     y_proba = clf.predict_proba(X_test)[:, 1]
-    y_pred = (y_proba >= 0.75).astype(int)
+    y_pred = (y_proba >= threshold).astype(int)
     metrics = {
         "weighted_accuracy": accuracy_score(y_test, y_pred, sample_weight=w_test),
         "weighted_precision": precision_score(y_test, y_pred, sample_weight=w_test, zero_division=0),
@@ -43,11 +45,12 @@ def evaluate(clf, X_test, y_test, w_test):
         print(f"{k:>20}: {v:.4f}")
 
 
-def list_top_feautures(X, clf, n):
+def list_top_feautures(clf, columns):
+
     booster = clf.get_booster()
     score_dict = booster.get_score(importance_type='gain')
 
-    idx_to_name = dict(enumerate(X.columns.tolist()))
+    idx_to_name = dict(enumerate(columns.tolist()))
     items = []
     for k, gain in score_dict.items():
         try:
